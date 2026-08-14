@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Invitación | Taller Demand Driven Enterprise — SAP &amp; Synkron</title>
+  <style>
+    /* ─── Reset ─────────────────────────────────────────────── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: '72', '72full', Arial, Helvetica, sans-serif;
+      background-color: #f0f4f8;
+      color: #1d2d3e;
+      -webkit-text-size-adjust: 100%;
+    }
+    img  { display: block; border: 0; outline: none; text-decoration: none; }
+    a    { text-decoration: none; }
+
+    /* ─── Outer wrapper ──────────────────────────────────────── */
+    .email-wrapper {
+      width: 100%;
+      background-color: #f0f4f8;
+      padding: 32px 16px;
+    }
+
+    /* ─── Email container ────────────────────────────────────── */
+    .email-container {
+      max-width: 640px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════════════════════════ */
+    .header {
+      background: linear-gradient(145deg, #002B50 0%, #003B6F 40%, #0057D2 80%, #0070F2 100%);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); z-index: 1;
+    }
+    .header::after {
+      content: '';
+      position: absolute; bottom: -100px; left: -60px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: rgba(240,171,0,0.08); z-index: 1;
+    }
+    .header-inner {
+      padding: 40px 48px 32px;
+      position: relative; z-index: 2;
+    }
+
+    /* Logos row */
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .logo-divider {
+      width: 1px; height: 32px;
+      background: rgba(255,255,255,0.30);
+    }
+    .partner-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.70);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .partner-name {
+      font-size: 18px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      line-height: 1;
+    }
+    .partner-name span { color: #F0AB00; }
+
+    /* Event label pill */
+    .event-pill {
+      display: inline-block;
+      background: rgba(240,171,0,0.18);
+      border: 1px solid rgba(240,171,0,0.50);
+      color: #F0AB00;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+
+    /* Main headline */
+    .header h1 {
+      color: #ffffff;
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.20;
+      margin-bottom: 8px;
+      letter-spacing: -0.4px;
+    }
+    .header h1 .gold { color: #F0AB00; }
+    .header h1 .light { color: #89D1FF; }
+
+    .header-tagline {
+      color: rgba(255,255,255,0.72);
+      font-size: 14px;
+      line-height: 1.55;
+      margin-top: 10px;
+      max-width: 480px;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       HERO QUESTION BAND
+    ══════════════════════════════════════════════════════════ */
+    .hero-question {
+      background: linear-gradient(135deg, #0057D2 0%, #003B6F 100%);
+      padding: 28px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-question::before {
+      content: '';
+      position: absolute; right: -20px; top: -20px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .big-question {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.35;
+      margin-bottom: 10px;
+      position: relative; z-index: 2;
+    }
+    .big-question .highlight { color: #F0AB00; }
+    .big-answer {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(240,171,0,0.15);
+      border: 1px solid rgba(240,171,0,0.40);
+      border-radius: 8px;
+      padding: 10px 18px;
+      position: relative; z-index: 2;
+    }
+    .big-answer-check {
+      font-size: 20px;
+    }
+    .big-answer-text {
+      color: #F0AB00;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       EVENT DETAILS BAR
+    ══════════════════════════════════════════════════════════ */
+    .event-bar {
+      background-color: #F0AB00;
+      padding: 14px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .event-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #002B50;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       SECTIONS
+    ══════════════════════════════════════════════════════════ */
+    .section           { padding: 36px 48px; }
+    .section + .section { border-top: 1px solid #edf0f4; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: #0070F2;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #EBF8FF;
+    }
+
+    .greeting {
+      font-size: 17px;
+      line-height: 1.65;
+      color: #1d2d3e;
+      margin-bottom: 18px;
+    }
+    .greeting strong { color: #0070F2; }
+
+    .body-text {
+      font-size: 15px;
+      line-height: 1.72;
+      color: #3d4a5c;
+      margin-bottom: 14px;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       METHODOLOGY CARDS
+    ══════════════════════════════════════════════════════════ */
+    .method-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .method-card {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: #f8fbff;
+      border: 1px solid #d1efff;
+      border-left: 4px solid #0070F2;
+      border-radius: 0 10px 10px 0;
+      padding: 20px 22px;
+    }
+    .method-card.gold {
+      border-left-color: #F0AB00;
+      background: #fffbf0;
+      border-color: #ffe5a0;
+      border-left-color: #F0AB00;
+    }
+    .method-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .method-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #003B6F;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .method-card.gold .method-title { color: #7A4500; }
+    .method-subtitle {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #0070F2;
+      background: #EBF8FF;
+      border-radius: 3px;
+      padding: 2px 7px;
+      margin-bottom: 8px;
+    }
+    .method-card.gold .method-subtitle {
+      color: #7A4500;
+      background: rgba(240,171,0,0.15);
+    }
+    .method-desc {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #4a5a6e;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       VALUE METRICS BAND
+    ══════════════════════════════════════════════════════════ */
+    .metrics-band {
+      background: linear-gradient(135deg, #003B6F 0%, #0057D2 100%);
+      padding: 32px 48px;
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .metric-item {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+      padding: 0 12px;
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+    .metric-item:last-child { border-right: none; }
+    .metric-number {
+      font-size: 34px;
+      font-weight: 800;
+      color: #F0AB00;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .metric-label {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       WHY ATTEND LIST
+    ══════════════════════════════════════════════════════════ */
+    .why-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .why-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid #f0f4f8;
+    }
+    .why-item:last-child { border-bottom: none; }
+    .why-check {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0070F2, #0057D2);
+      display: flex; align-items: center; justify-content: center;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .why-text {
+      font-size: 14.5px;
+      color: #3d4a5c;
+      line-height: 1.6;
+    }
+    .why-text strong { color: #003B6F; }
+
+    /* ══════════════════════════════════════════════════════════
+       AUDIENCE TAGS
+    ══════════════════════════════════════════════════════════ */
+    .audience-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .audience-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #EBF8FF;
+      border: 1px solid #A6E0FF;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0057D2;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       CO-ORGANIZER BLOCK
+    ══════════════════════════════════════════════════════════ */
+    .co-org-block {
+      background: #f8fbff;
+      border: 1px solid #d1efff;
+      border-radius: 10px;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .co-org-logo {
+      width: 56px; height: 56px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0057D2, #003B6F);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .co-org-name {
+      font-size: 20px;
+      font-weight: 900;
+      color: #003B6F;
+      letter-spacing: 0.5px;
+    }
+    .co-org-name span { color: #F0AB00; }
+    .co-org-desc {
+      font-size: 13px;
+      color: #5a6a7e;
+      line-height: 1.55;
+      margin-top: 4px;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       CTA SECTION
+    ══════════════════════════════════════════════════════════ */
+    .cta-section {
+      text-align: center;
+      padding: 40px 48px 44px;
+      background: linear-gradient(135deg, #f8fbff 0%, #EBF8FF 100%);
+    }
+    .cta-headline {
+      font-size: 20px;
+      font-weight: 800;
+      color: #003B6F;
+      margin-bottom: 8px;
+    }
+    .cta-sub-text {
+      font-size: 14px;
+      color: #5a6a7e;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .cta-sub-text strong { color: #0070F2; }
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #0070F2 0%, #0057D2 100%);
+      color: #ffffff !important;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      padding: 17px 52px;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,112,242,0.38);
+    }
+    .cta-note {
+      font-size: 12.5px;
+      color: #8a96a4;
+      margin-top: 18px;
+      line-height: 1.6;
+    }
+    .cta-note a { color: #0070F2; }
+
+    /* ══════════════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════════════ */
+    .footer {
+      background-color: #1d2d3e;
+      padding: 36px 48px 28px;
+      text-align: center;
+    }
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .footer-divider-v {
+      width: 1px; height: 28px;
+      background: rgba(255,255,255,0.20);
+    }
+    .footer-partner-ft {
+      font-size: 14px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.5px;
+    }
+    .footer-partner-ft span { color: #F0AB00; }
+    .footer-tagline {
+      color: rgba(255,255,255,0.50);
+      font-size: 12px;
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #89D1FF;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .footer-hr {
+      height: 1px;
+      background: rgba(255,255,255,0.10);
+      margin: 18px 0;
+    }
+    .footer-legal {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.75;
+    }
+    .footer-unsub {
+      margin-top: 14px;
+      font-size: 11px;
+    }
+    .footer-unsub a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: underline;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media only screen and (max-width: 600px) {
+      .section { padding: 26px 22px; }
+      .header-inner { padding: 28px 22px 24px; }
+      .hero-question { padding: 22px 22px; }
+      .event-bar { padding: 12px 22px; flex-direction: column; align-items: flex-start; }
+      .metrics-band { padding: 28px 22px; }
+      .metric-item { min-width: 90px; padding: 0 8px; }
+      .metric-number { font-size: 26px; }
+      .cta-section { padding: 28px 22px 32px; }
+      .footer { padding: 28px 22px 22px; }
+      .header h1 { font-size: 24px; }
+      .big-question { font-size: 17px; }
+      .method-card { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+<div class="email-wrapper">
+<div class="email-container">
+
+  <!-- ══════════════════════ HEADER ══════════════════════ -->
+  <div class="header">
+    <div class="header-inner">
+
+      <!-- Logos row: SAP + Synkron -->
+      <div class="logo-row">
+        <!-- SAP Logo SVG -->
+        <svg width="60" height="30" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg" aria-label="SAP">
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"  stop-color="#89D1FF"/>
+              <stop offset="50%" stop-color="#4DB1FF"/>
+              <stop offset="100%" stop-color="#1B90FF"/>
+            </linearGradient>
+          </defs>
+          <rect width="64" height="32" rx="5" fill="url(#g1)"/>
+          <text x="50%" y="22" text-anchor="middle" font-family="Arial" font-size="16"
+                font-weight="900" fill="#002B50" letter-spacing="1.5">SAP</text>
+        </svg>
+
+        <div class="logo-divider"></div>
+
+        <div>
+          <div class="partner-badge">Socio Estratégico</div>
+          <div class="partner-name">SYN<span>KRON</span></div>
+        </div>
+      </div>
+
+      <!-- Event type pill -->
+      <div class="event-pill">&#x2605;&nbsp; Taller Exclusivo &nbsp;&#x2605;</div>
+
+      <!-- Main title -->
+      <h1>Taller <span class="gold">Demand Driven</span><br/><span class="light">Enterprise</span></h1>
+
+      <p class="header-tagline">
+        Un taller ejecutivo organizado por <strong style="color:#ffffff;">SAP</strong> y <strong style="color:#F0AB00;">Synkron</strong> para descubrir cómo vender más con menos inventario, habilitado por <strong style="color:#ffffff;">SAP IBP</strong>.
+      </p>
+    </div>
+
+    <!-- Hero visual: Demand Driven Flow diagram -->
+    <div style="background:linear-gradient(180deg,#0057D2 0%,#003B6F 100%); padding:28px 32px 0; overflow:hidden;">
+      <svg viewBox="0 0 580 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:0 auto;">
+
+        <!-- Background glow -->
+        <ellipse cx="290" cy="80" rx="200" ry="55" fill="rgba(0,112,242,0.12)"/>
+
+        <!-- Flow arrows -->
+        <!-- Demand signal arrow (left to right across center) -->
+        <defs>
+          <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <polygon points="0 0, 8 4, 0 8" fill="rgba(137,209,255,0.70)"/>
+          </marker>
+          <marker id="arrowGold" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <polygon points="0 0, 8 4, 0 8" fill="#F0AB00"/>
+          </marker>
+        </defs>
+
+        <!-- Top flow: Demand → IBP → Supply (blue) -->
+        <line x1="60" y1="50" x2="195" y2="50" stroke="rgba(137,209,255,0.55)" stroke-width="1.5" stroke-dasharray="7,4" marker-end="url(#arrowBlue)"/>
+        <line x1="385" y1="50" x2="520" y2="50" stroke="rgba(137,209,255,0.55)" stroke-width="1.5" stroke-dasharray="7,4" marker-end="url(#arrowBlue)"/>
+
+        <!-- Bottom flow: Supply → IBP → Demand (gold/feedback) -->
+        <line x1="520" y1="115" x2="385" y2="115" stroke="rgba(240,171,0,0.50)" stroke-width="1.5" stroke-dasharray="7,4" marker-end="url(#arrowGold)"/>
+        <line x1="195" y1="115" x2="60" y2="115" stroke="rgba(240,171,0,0.50)" stroke-width="1.5" stroke-dasharray="7,4" marker-end="url(#arrowGold)"/>
+
+        <!-- Node: Demanda -->
+        <rect x="5" y="28" width="58" height="108" rx="10" fill="#002B50" stroke="#4DB1FF" stroke-width="1.5"/>
+        <text x="34" y="72"  text-anchor="middle" font-size="22" font-family="Arial">📊</text>
+        <text x="34" y="90"  text-anchor="middle" font-size="7.5" font-family="Arial" fill="#89D1FF" font-weight="700">DEMANDA</text>
+        <text x="34" y="102" text-anchor="middle" font-size="6.5" font-family="Arial" fill="rgba(255,255,255,0.55)">Real</text>
+        <text x="34" y="122" text-anchor="middle" font-size="7" font-family="Arial" fill="rgba(240,171,0,0.70)">↑ Señal</text>
+
+        <!-- Node: Adaptive S&OP -->
+        <rect x="200" y="22" width="76" height="60" rx="8" fill="#003B6F" stroke="#4DB1FF" stroke-width="1.5"/>
+        <text x="238" y="46"  text-anchor="middle" font-size="18" font-family="Arial">🔄</text>
+        <text x="238" y="60"  text-anchor="middle" font-size="6.5" font-family="Arial" fill="#F0AB00" font-weight="800">Adaptive</text>
+        <text x="238" y="70"  text-anchor="middle" font-size="6.5" font-family="Arial" fill="#89D1FF"  font-weight="700">S&amp;OP</text>
+
+        <!-- Node: DDMRP -->
+        <rect x="200" y="97" width="76" height="42" rx="8" fill="#003B6F" stroke="#F0AB00" stroke-width="1.5"/>
+        <text x="238" y="116" text-anchor="middle" font-size="13" font-family="Arial">🎯</text>
+        <text x="238" y="128" text-anchor="middle" font-size="6.5" font-family="Arial" fill="#F0AB00" font-weight="800">DDMRP</text>
+
+        <!-- Center node: SAP IBP -->
+        <rect x="289" y="14" width="86" height="132" rx="10" fill="#0070F2" stroke="#F0AB00" stroke-width="2"/>
+        <text x="332" y="52"  text-anchor="middle" font-size="26" font-family="Arial">🤖</text>
+        <text x="332" y="72"  text-anchor="middle" font-size="7"   font-family="Arial" fill="#ffffff" font-weight="900" letter-spacing="0.5">SAP IBP</text>
+        <text x="332" y="85"  text-anchor="middle" font-size="6.5" font-family="Arial" fill="#F0AB00">AI-Driven</text>
+        <text x="332" y="100" text-anchor="middle" font-size="6"   font-family="Arial" fill="rgba(255,255,255,0.65)">Planning</text>
+        <!-- Pulse rings -->
+        <circle cx="332" cy="80" r="56" fill="none" stroke="rgba(240,171,0,0.20)" stroke-width="1.5"/>
+        <circle cx="332" cy="80" r="62" fill="none" stroke="rgba(240,171,0,0.10)" stroke-width="1"/>
+
+        <!-- Node: Inventario -->
+        <rect x="390" y="22" width="76" height="55" rx="8" fill="#003B6F" stroke="#89D1FF" stroke-width="1.5"/>
+        <text x="428" y="45"  text-anchor="middle" font-size="18" font-family="Arial">📦</text>
+        <text x="428" y="59"  text-anchor="middle" font-size="7"   font-family="Arial" fill="#89D1FF" font-weight="700">INVENTARIO</text>
+        <text x="428" y="69"  text-anchor="middle" font-size="6"   font-family="Arial" fill="rgba(240,171,0,0.80)">–15%–30%</text>
+
+        <!-- Node: Servicio -->
+        <rect x="390" y="97" width="76" height="42" rx="8" fill="#003B6F" stroke="#89D1FF" stroke-width="1.5"/>
+        <text x="428" y="116" text-anchor="middle" font-size="13" font-family="Arial">⭐</text>
+        <text x="428" y="128" text-anchor="middle" font-size="6.5" font-family="Arial" fill="#89D1FF" font-weight="700">SERVICIO</text>
+
+        <!-- Node: Resultado -->
+        <rect x="517" y="28" width="58" height="108" rx="10" fill="#002B50" stroke="#F0AB00" stroke-width="1.5"/>
+        <text x="546" y="72"  text-anchor="middle" font-size="22" font-family="Arial">🏆</text>
+        <text x="546" y="90"  text-anchor="middle" font-size="7"   font-family="Arial" fill="#F0AB00" font-weight="700">RESULTADO</text>
+        <text x="546" y="102" text-anchor="middle" font-size="6.5" font-family="Arial" fill="rgba(255,255,255,0.55)">Vender más</text>
+        <text x="546" y="122" text-anchor="middle" font-size="7"   font-family="Arial" fill="rgba(137,209,255,0.70)">↑ ROI</text>
+
+        <!-- Labels for flows -->
+        <text x="127" y="43" text-anchor="middle" font-size="6.5" font-family="Arial" fill="rgba(137,209,255,0.70)" font-weight="700">Señal de</text>
+        <text x="127" y="52" text-anchor="middle" font-size="6.5" font-family="Arial" fill="rgba(137,209,255,0.70)" font-weight="700">demanda real</text>
+        <text x="452" y="43" text-anchor="middle" font-size="6.5" font-family="Arial" fill="rgba(137,209,255,0.70)" font-weight="700">Plan</text>
+        <text x="452" y="52" text-anchor="middle" font-size="6.5" font-family="Arial" fill="rgba(137,209,255,0.70)" font-weight="700">optimizado</text>
+        <text x="127" y="108" text-anchor="middle" font-size="6.5" font-family="Arial" fill="rgba(240,171,0,0.65)" font-weight="700">Feedback</text>
+        <text x="452" y="108" text-anchor="middle" font-size="6.5" font-family="Arial" fill="rgba(240,171,0,0.65)" font-weight="700">Ejecución</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ HERO QUESTION ══════════════════════ -->
+  <div class="hero-question">
+    <p class="big-question">
+      ¿Cómo vender más, con <span class="highlight">dos dígitos menos</span> en inventario?
+    </p>
+    <div class="big-answer">
+      <span class="big-answer-check">✅</span>
+      <span class="big-answer-text">Sí, es posible. En este taller le mostraremos cómo lograrlo.</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ EVENT BAR ══════════════════════ -->
+  <div class="event-bar">
+    <div class="event-bar-item"><span>📅</span><span>8 de septiembre</span></div>
+    <div class="event-bar-item"><span>🕣</span><span>8:30 am – 11:30 am</span></div>
+    <div class="event-bar-item"><span>📍</span><span>Lomas de Santa Fe, CDMX</span></div>
+    <div class="event-bar-item"><span>🏢</span><span>SAP México — Torre II, Piso 7</span></div>
+  </div>
+
+  <!-- ══════════════════════ SALUDO ══════════════════════ -->
+  <div class="section">
+    <p class="body-text">
+      Tenemos el gusto de invitarle a un taller exclusivo organizado por <strong style="color:#003B6F;">SAP</strong> en conjunto con nuestro socio estratégico <strong style="color:#003B6F;">Synkron</strong>, donde abordaremos uno de los mayores retos de la cadena de suministro actual.
+    </p>
+  </div>
+
+  <!-- ══════════════════════ METRICS BAND ══════════════════════ -->
+  <div class="metrics-band">
+    <div class="metric-item">
+      <div class="metric-number">-15%</div>
+      <div class="metric-label">Reducción<br/>mínima de inventario</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-number">-30%</div>
+      <div class="metric-label">Reducción<br/>máxima de inventario</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-number">↑ SL</div>
+      <div class="metric-label">Mejora en nivel<br/>de servicio</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-number">IBP</div>
+      <div class="metric-label">Plataforma SAP<br/>habilitadora</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ METODOLOGÍAS ══════════════════════ -->
+  <div class="section">
+    <div class="section-label">Las metodologías que lo hacen posible</div>
+
+    <!-- Adaptive S&OP -->
+    <div class="method-cards">
+      <div class="method-card">
+        <div class="method-icon">🔄</div>
+        <div>
+          <div class="method-subtitle">Metodología 1 · SAP IBP</div>
+          <div class="method-title">Adaptive S&amp;OP</div>
+          <p class="method-desc">
+            Alinee su estrategia comercial con la ejecución operativa de forma ágil y adaptativa, integrando <strong>ventas, operaciones y finanzas</strong> en un solo proceso basado en datos en tiempo real.
+          </p>
+        </div>
+      </div>
+
+      <!-- DDMRP -->
+      <div class="method-card gold">
+        <div class="method-icon">🎯</div>
+        <div>
+          <div class="method-subtitle" style="color:#7A4500;background:rgba(240,171,0,0.15);">Metodología 2 · SAP IBP</div>
+          <div class="method-title">DDMRP — Demand Driven MRP</div>
+          <p class="method-desc">
+            Posicione y dimensione estratégicamente su inventario para responder a la <strong>demanda real, no al pronóstico</strong>. Reduzca simultáneamente la sobreacumulación y las rupturas de stock.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ POR QUÉ ASISTIR ══════════════════════ -->
+  <div class="section">
+    <div class="section-label">¿Por qué asistir?</div>
+    <ul class="why-list">
+      <li class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text">Descubra cómo empresas líderes han logrado <strong>reducir inventarios entre 15% y 30%</strong> mientras mejoran su nivel de servicio.</div>
+      </li>
+      <li class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text">Conozca las capacidades de <strong>SAP IBP</strong> para habilitar un modelo Demand Driven en su organización.</div>
+      </li>
+      <li class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text">Aprenda de la experiencia de <strong>Synkron</strong>, expertos en transformación de cadenas de suministro en Latinoamérica.</div>
+      </li>
+      <li class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text">Sesión <strong>ejecutiva, práctica y enfocada en resultados tangibles</strong> — sin generalidades, con aplicación directa a su industria.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════ DIRIGIDO A ══════════════════════ -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-label">Dirigido a</div>
+    <div class="audience-row">
+      <span class="audience-tag">🔗 Supply Chain</span>
+      <span class="audience-tag">📋 Planeación</span>
+      <span class="audience-tag">⚙️ Operaciones</span>
+      <span class="audience-tag">💰 Finanzas</span>
+      <span class="audience-tag">🏢 Dirección General</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ CO-ORGANIZER ══════════════════════ -->
+  <div class="section">
+    <div class="section-label">Organizado en conjunto con</div>
+    <div class="co-org-block">
+      <div class="co-org-logo">
+        <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="16" fill="none" stroke="#F0AB00" stroke-width="2"/>
+          <path d="M10 18 Q18 8 26 18 Q18 28 10 18 Z" fill="rgba(240,171,0,0.30)" stroke="#F0AB00" stroke-width="1.2"/>
+          <circle cx="18" cy="18" r="4" fill="#F0AB00"/>
+        </svg>
+      </div>
+      <div>
+        <div class="co-org-name">SYN<span>KRON</span></div>
+        <div class="co-org-desc">Expertos en transformación de cadenas de suministro. Socios estratégicos de SAP con experiencia comprobada en implementaciones de DDMRP y S&amp;OP en mercados de América Latina.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ LUGAR DEL EVENTO ══════════════════════ -->
+  <div class="cta-section">
+    <p class="cta-headline">Lugar del Evento</p>
+    <div style="background:#ffffff;border:1px solid #d1efff;border-left:4px solid #0070F2;border-radius:0 10px 10px 0;padding:22px 28px;text-align:left;max-width:480px;margin:0 auto 20px;">
+      <p style="margin:0 0 6px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#0070F2;font-family:Arial,Helvetica,sans-serif;">📍 Instalaciones SAP México</p>
+      <p style="margin:0 0 4px;font-size:15px;font-weight:700;color:#003B6F;font-family:Arial,Helvetica,sans-serif;">Corporativo Park Plaza — Torre II, Piso 7</p>
+      <p style="margin:0 0 2px;font-size:14px;color:#3d4a5c;font-family:Arial,Helvetica,sans-serif;">Avenida Javier Barros Sierra #540</p>
+      <p style="margin:0 0 2px;font-size:14px;color:#3d4a5c;font-family:Arial,Helvetica,sans-serif;">Colonia Lomas de Santa Fe</p>
+      <p style="margin:0 0 2px;font-size:14px;color:#3d4a5c;font-family:Arial,Helvetica,sans-serif;">Alcaldía Álvaro Obregón, C.P. 01219</p>
+      <p style="margin:0;font-size:14px;font-weight:600;color:#003B6F;font-family:Arial,Helvetica,sans-serif;">Ciudad de México</p>
+    </div>
+    <p class="cta-note">
+      ¿Preguntas? Contáctenos en
+      <a href="mailto:[CONTACTO_SAP]">[CONTACTO_SAP]</a><br/>
+      Al asistir, acepta la <a href="https://www.sap.com/about/legal/privacy.html">Política de Privacidad de SAP</a>.
+    </p>
+  </div>
+
+  <!-- ══════════════════════ FOOTER ══════════════════════ -->
+  <div class="footer">
+
+    <!-- SAP + Synkron logos -->
+    <div class="footer-logos">
+      <svg width="48" height="24" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"  stop-color="#4DB1FF"/>
+            <stop offset="100%" stop-color="#1B90FF"/>
+          </linearGradient>
+        </defs>
+        <rect width="64" height="32" rx="5" fill="url(#g2)" opacity="0.85"/>
+        <text x="50%" y="22" text-anchor="middle" font-family="Arial" font-size="16"
+              font-weight="900" fill="#ffffff" letter-spacing="1.5">SAP</text>
+      </svg>
+      <div class="footer-divider-v"></div>
+      <div class="footer-partner-ft">SYN<span>KRON</span></div>
+    </div>
+
+    <p class="footer-tagline">
+      SAP México S.A. de C.V. · Avenida Javier Barros Sierra #540, Corporativo Park Plaza Torre II, Piso 7<br/>
+      Colonia Lomas de Santa Fe, Alcaldía Álvaro Obregón, C.P. 01219, Ciudad de México
+    </p>
+
+    <div class="footer-links">
+      <a href="https://www.sap.com/about/legal/privacy.html">Política de Privacidad</a>
+      <a href="https://www.sap.com/about/legal/impressum.html">Aviso Legal</a>
+      <a href="https://www.sap.com">www.sap.com</a>
+      <a href="https://www.sap.com/contactsap/index.html">Contacto SAP</a>
+    </div>
+
+    <div class="footer-hr"></div>
+
+    <p class="footer-legal">
+      Este correo electrónico ha sido enviado a <strong style="color:rgba(255,255,255,0.50);">[EMAIL_DESTINATARIO]</strong> como parte de las comunicaciones de marketing de SAP. La información contenida es de carácter informativo y está dirigida exclusivamente al destinatario. SAP y el logotipo de SAP son marcas registradas de SAP SE en Alemania y en otros países. Todos los derechos reservados © 2026 SAP SE.
+    </p>
+    <p class="footer-unsub">
+      Si no desea recibir más comunicaciones de marketing de SAP,
+      <a href="[UNSUBSCRIBE_LINK]">haga clic aquí para darse de baja</a>.
+    </p>
+
+  </div><!-- /footer -->
+
+</div><!-- /email-container -->
+</div><!-- /email-wrapper -->
+</body>
+</html>
